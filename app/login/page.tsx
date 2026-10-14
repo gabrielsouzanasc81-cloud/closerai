@@ -1,0 +1,7 @@
+'use client';
+import {useState,useRef} from 'react';import {useRouter} from 'next/navigation';import {client} from '@/lib/supabase/browser';
+const pts=Array.from({length:110},(_,i)=>({x:(i*79+Math.floor(i/8)*29)%1250,y:(i*137+Math.floor(i/9)*19)%850}));
+const links=pts.flatMap((p,i)=>pts.slice(i+1).map((q,j)=>({p,q,id:i+'-'+j,d:Math.hypot(p.x-q.x,p.y-q.y)})).filter(v=>v.d<160).slice(0,3));
+function Network(){return <div className="network" aria-hidden="true"><svg viewBox="0 0 1250 850" preserveAspectRatio="xMidYMid slice">{links.map(l=><line key={l.id} x1={l.p.x} y1={l.p.y} x2={l.q.x} y2={l.q.y} stroke="#25d366" opacity=".19" strokeWidth=".8"/>)}{pts.map((p,i)=><g key={i}><circle cx={p.x} cy={p.y} r={i%7===0?4:1.8} fill={i%7===0?'#9fffc6':'#25d366'} opacity=".7"/>{i%7===0&&<circle cx={p.x} cy={p.y} r="13" fill="none" stroke="#25d366" opacity=".2"/>}</g>)}</svg></div>}
+export default function Login(){const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[show,setShow]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState('');const [open,setOpen]=useState(false),[q,setQ]=useState(''),[messages,setMessages]=useState<{from:'bot'|'user';text:string}[]>([{from:'bot',text:'Olá! Sou o assistente automático do CloserAI. Posso ajudar com login, senha e acesso à organização.'}]);const scene=useRef<HTMLElement>(null);const router=useRouter();
+function move(ev:React.MouseEvent<HTMLElement>){if(window.matchMedia('(prefers-reduced-motion: reduce)').6;'q+^

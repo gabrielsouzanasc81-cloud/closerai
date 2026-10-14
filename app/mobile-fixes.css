@@ -1,0 +1,12 @@
+@media(max-width:767px){
+.login-page{min-height:100svh!important;overflow-x:hidden!important;overflow-y:auto!important}
+.login-page .login-header{padding:12px 5%!important;min-height:auto!important}
+.login-page .login-layout{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:16px!important;padding:6px 5% 28px!important;margin:0!important;min-height:0!important}
+.login-page .login-layout> :has(form){order:-2!important;margin:0 auto!important;width:100%!important;max-width:440px!important;transform:none!important}
+.login-page .login-layout> :not(:has(form)){order:2!important;margin:0 auto!important;width:100%!important;max-width:440px!important}
+.login-page .login-layout form{margin:0!important}
+.login-page .login-layout h1{font-size:clamp(27px,7vw,38px)!important;line-height:1.13!important}
+.login-page .login-layout> :has(form) h2{margin-top:12px!important}
+.login-page .login-footer{padding:14px!important}
+.login-page .support{bottom:12px!important;right:12px!important;transform:scale(.84);transform-origin:bottom right}
+}

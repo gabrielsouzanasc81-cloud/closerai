@@ -1,0 +1,1 @@
+import './globals.css';import './mobile-fixes.css';export const metadata={title:'CloserAI 3.0'};export default function Layout({children}:{children:React.ReactNode}){return <html lang='pt-BR'><body>{children}</body></html>}

@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function Page(){return <main className='wrap'><div className='brand'>Closer<b>AI</b> 3.0</div><section className='hero'><h1>Seu novo espaço de relacionamento e vendas.</h1><p className='muted'>Atendimento, CRM e automações em uma única plataforma.</p><Link className='btn' href='/login'>Acessar plataforma →</Link></section></main>}

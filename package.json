@@ -1,0 +1,1 @@
+{"name":"closerai-3","version":"0.3.0","private":true,"scripts":{"build":"next build","dev":"next dev","start":"next start"},"dependencies":{"next":"15.5.27","react":"19.0.0","react-dom":"19.0.0","@supabase/ssr":"0.6.1","@supabase/supabase-js":"^2.57.0"},"devDependencies":{"typescript":"^5.9.0","@types/react":"^19.0.0","@types/node":"^22.0.0"}}
