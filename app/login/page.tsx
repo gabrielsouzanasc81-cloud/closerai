@@ -1,7 +1,8 @@
 'use client';
-import {useState,useRef} from 'react';import {useRouter} from 'next/navigation';import {client} from '@/lib/supabase/browser';
-const pts=Array.from({length:110},(_,i)=>({x:(i*79+Math.floor(i/8)*29)%1250,y:(i*137+Math.floor(i/9)*19)%850}));
-const links=pts.flatMap((p,i)=>pts.slice(i+1).map((q,j)=>({p,q,id:i+'-'+j,d:Math.hypot(p.x-q.x,p.y-q.y)})).filter(v=>v.d<160).slice(0,3));
-function Network(){return <div className="network" aria-hidden="true"><svg viewBox="0 0 1250 850" preserveAspectRatio="xMidYMid slice">{links.map(l=><line key={l.id} x1={l.p.x} y1={l.p.y} x2={l.q.x} y2={l.q.y} stroke="#25d366" opacity=".19" strokeWidth=".8"/>)}{pts.map((p,i)=><g key={i}><circle cx={p.x} cy={p.y} r={i%7===0?4:1.8} fill={i%7===0?'#9fffc6':'#25d366'} opacity=".7"/>{i%7===0&&<circle cx={p.x} cy={p.y} r="13" fill="none" stroke="#25d366" opacity=".2"/>}</g>)}</svg></div>}
-export default function Login(){const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[show,setShow]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState('');const [open,setOpen]=useState(false),[q,setQ]=useState(''),[messages,setMessages]=useState<{from:'bot'|'user';text:string}[]>([{from:'bot',text:'Olá! Sou o assistente automático do CloserAI. Posso ajudar com login, senha e acesso à organização.'}]);const scene=useRef<HTMLElement>(null);const router=useRouter();
-function move(ev:React.MouseEvent<HTMLElement>){if(window.matchMedia('(prefers-reduced-motion: reduce)').6;'q+^
+import {useState} from 'react';
+import {useRouter} from 'next/navigation';
+import {client} from '@/lib/supabase/browser';
+export default function Login(){
+const router=useRouter();const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState('');
+async function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setBusy(true);setError('');const {error:authError}=await client().auth.signInWithPassword({email,password});setBusy(false);if(authError){setError(authError.message);return}router.push('/home');router.refresh()}
+return <main style={{minHeight:'100vh',display:'grid',placeItems:'center',padding:24}}><form onSubmit={submit} style={{width:'100%',maxWidth:390,padding:30,borderRadius:20,background:'#153122',display:'grid',gap:14}}><h1>CloserAI 3.0</h1><p>Entre na sua conta.</p><label htmlFor='email'>E-mail</label><input id='email' type='email' required value={email} onChange={e=>setEmail(e.target.value)}/><label htmlFor='password'>Senha</label><input id='password' type='password' required value={password} onChange={e=>setPassword(e.target.value)}/>{error&&<p role='alert'>{error}</p>}<button disabled={busy} type='submit'>{busy?'Entrando…':'Entrar'}</button></form></main>}
